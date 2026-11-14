@@ -1,0 +1,18 @@
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.3
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.9-browsers
+    working_directory: ~/your-project
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Start Vite Dev Server
+          command: npm run dev
+          background: true
